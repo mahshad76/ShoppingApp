@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/products"
-        android:icon="@drawable/product_icn"
-        android:title="Products" />
+        android:id="@+id/backHome"
+        android:icon="@drawable/product_svgrepo_com"
+        android:title="Product" />
+
     <item
-        android:id="@+id/category"
-        android:icon="@drawable/category_icn"
-        android:title="Categories" />
+        android:id="@+id/setting"
+        android:icon="@drawable/category_svgrepo_com"
+        android:title="Category" />
 </menu>
