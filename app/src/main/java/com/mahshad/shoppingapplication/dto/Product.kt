@@ -1,6 +1,6 @@
 package com.mahshad.shoppingapplication.dto
-
-data class ProductsItem(
+//TODO serialization annotation and nullable
+data class Product(
     val category: String,
     val description: String,
     val id: Int,

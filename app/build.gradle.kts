@@ -68,6 +68,10 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
+    //rxjava2
+    implementation(libs.rxjava2)
+    implementation(libs.rxandroid)
+    implementation(libs.retrofit2.adapter.rxjava2)
 
 
     testImplementation(libs.junit)
