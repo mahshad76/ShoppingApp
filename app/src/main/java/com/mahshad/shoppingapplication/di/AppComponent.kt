@@ -1,6 +1,7 @@
 package com.mahshad.shoppingapplication.di
 
 import android.content.Context
+import com.mahshad.shoppingapplication.ui.mainActivity.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -12,4 +13,6 @@ interface AppComponent {
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent
     }
+
+    fun inject(activity: MainActivity)
 }

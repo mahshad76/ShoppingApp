@@ -51,7 +51,7 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
     ): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BuildConfig.BASE_URL)
+        .baseUrl("https://fakestoreapi.com/")
         .client(okHttpClient)
         .build()
 
