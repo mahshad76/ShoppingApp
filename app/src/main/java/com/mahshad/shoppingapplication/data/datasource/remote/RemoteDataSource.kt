@@ -1,14 +1,10 @@
-package com.mahshad.shoppingapplication.network
+package com.mahshad.shoppingapplication.data.datasource.remote
 
 import com.mahshad.shoppingapplication.data.models.response.ProductDTO
 import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.GET
 
-interface ApiService {
-    @GET("products")
+interface RemoteDataSource {
     fun getProducts(): Single<Response<List<ProductDTO>>>
-
-    @GET("products/categories")
     fun getCategories(): Single<Response<List<String>>>
 }
