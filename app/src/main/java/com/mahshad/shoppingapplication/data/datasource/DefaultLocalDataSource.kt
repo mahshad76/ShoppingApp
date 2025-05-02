@@ -59,8 +59,22 @@ class DefaultLocalDataSourceSource @Inject constructor(
     }
 
     override fun clearUser(key: String): Completable {
+        /**
+         * the output of the fromAction: returns a Completable instance that runs the given Action for each subscriber and emits either an unchecked exception or simply completes.
+         */
         return Completable.fromAction {
             sharedPreference.edit { remove(key) }
+        }
+    }
+
+    fun clearUser2(key: String): Completable {
+        return Completable.create { emitter ->
+            try {
+                sharedPreference.edit { remove(key) }
+                emitter.onComplete()
+            } catch (e: Exception) {
+                emitter.onError(e)
+            }
         }
     }
 
