@@ -1,7 +1,7 @@
 package com.mahshad.shoppingapplication.di
 
-import com.mahshad.shoppingapplication.data.datasource.local.LocalDataSource
-import com.mahshad.shoppingapplication.data.datasource.local.SharedPrefLocalDataSource
+import com.mahshad.shoppingapplication.data.datasource.local.user.SharedPrefUserLocalDataSource
+import com.mahshad.shoppingapplication.data.datasource.local.user.UserLocalDataSource
 import com.mahshad.shoppingapplication.data.datasource.remote.NetworkRemoteDataSource
 import com.mahshad.shoppingapplication.data.datasource.remote.RemoteDataSource
 import dagger.Binds
@@ -13,5 +13,5 @@ abstract class DataSourceModule {
     abstract fun bindRemoteDataSource(networkRemoteDataSource: NetworkRemoteDataSource): RemoteDataSource
 
     @Binds
-    abstract fun bindLocalDataSource(sharedPrefLocalDataSource: SharedPrefLocalDataSource): LocalDataSource
+    abstract fun bindLocalDataSource(sharedPrefLocalDataSource: SharedPrefUserLocalDataSource): UserLocalDataSource
 }

@@ -1,7 +1,7 @@
 package com.mahshad.shoppingapplication.data.datasource.remote
 
 import com.mahshad.shoppingapplication.data.models.response.ProductDTO
-import com.mahshad.shoppingapplication.network.ApiService
+import com.mahshad.shoppingapplication.data.network.ApiService
 import io.reactivex.Single
 import retrofit2.Response
 import javax.inject.Inject

@@ -2,7 +2,7 @@ package com.mahshad.shoppingapplication.di
 
 import com.google.gson.Gson
 import com.mahshad.shoppingapplication.BuildConfig
-import com.mahshad.shoppingapplication.network.ApiService
+import com.mahshad.shoppingapplication.data.network.ApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

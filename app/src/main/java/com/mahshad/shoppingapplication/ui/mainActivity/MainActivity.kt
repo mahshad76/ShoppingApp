@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahshad.shoppingapplication.MyApplication
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.databinding.MainActivityBinding
-import com.mahshad.shoppingapplication.network.ApiService
+import com.mahshad.shoppingapplication.data.network.ApiService
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

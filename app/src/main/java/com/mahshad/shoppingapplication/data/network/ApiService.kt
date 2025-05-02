@@ -1,4 +1,4 @@
-package com.mahshad.shoppingapplication.network
+package com.mahshad.shoppingapplication.data.network
 
 import com.mahshad.shoppingapplication.data.models.response.ProductDTO
 import io.reactivex.Single
