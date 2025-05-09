@@ -47,6 +47,8 @@ android {
 
 dependencies {
 
+    implementation (libs.rx.preferences)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -73,6 +75,11 @@ dependencies {
     implementation(libs.rxjava2)
     implementation(libs.rxandroid)
     implementation(libs.retrofit2.adapter.rxjava2)
+
+    //room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
 
     testImplementation(libs.junit)
