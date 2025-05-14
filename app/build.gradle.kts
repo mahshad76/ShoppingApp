@@ -80,6 +80,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.rxjava2)
+    kapt(libs.androidx.room.compiler.v261)
 
 
     testImplementation(libs.junit)

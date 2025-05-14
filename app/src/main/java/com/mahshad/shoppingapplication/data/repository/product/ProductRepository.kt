@@ -1,11 +1,14 @@
 package com.mahshad.shoppingapplication.data.repository.product
 
 import com.mahshad.shoppingapplication.data.database.ProductEntity
-import com.mahshad.shoppingapplication.data.models.response.ProductDTO
+import com.mahshad.shoppingapplication.data.models.Product
+import io.reactivex.Completable
 import io.reactivex.Flowable
-import retrofit2.Response
 
 interface ProductRepository {
-    fun getProducts(): Flowable<Response<List<ProductDTO>>>
+    fun getProducts(): Flowable<List<Product>>
     fun getFavoriteProducts(): Flowable<List<ProductEntity>>
+    fun insert(product: ProductEntity): Completable
+    fun delete(productId: Int): Completable
+
 }

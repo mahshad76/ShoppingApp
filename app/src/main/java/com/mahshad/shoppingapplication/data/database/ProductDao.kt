@@ -9,11 +9,17 @@ import io.reactivex.Flowable
 
 @Dao
 interface ProductDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(product: ProductEntity): Completable
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(product: List<ProductEntity>): Completable
 
     @Query("select * from product_table")
     fun getAllProduct(): Flowable<List<ProductEntity>>
+
+    @Query("DELETE FROM product_table WHERE id = :productId")
+    fun delete(productId: Int): Completable
 
     @Query("DELETE FROM product_table")
     fun deleteAll(): Completable

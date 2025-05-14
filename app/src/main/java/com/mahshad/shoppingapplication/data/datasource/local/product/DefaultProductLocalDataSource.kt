@@ -13,5 +13,9 @@ class DefaultProductLocalDataSource @Inject constructor(private val productDao: 
 
     override fun getAllProduct(): Flowable<List<ProductEntity>> = productDao.getAllProduct()
 
+    override fun insert(product: ProductEntity) = productDao.insert(product)
+
+    override fun delete(productId: Int) = productDao.delete(productId)
+
     override fun deleteAll(): Completable = productDao.deleteAll()
 }

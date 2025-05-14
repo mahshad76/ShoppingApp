@@ -9,5 +9,9 @@ interface ProductLocalDataSource {
 
     fun getAllProduct(): Flowable<List<ProductEntity>>
 
+    fun insert(product: ProductEntity): Completable
+
+    fun delete(productId: Int): Completable
+
     fun deleteAll(): Completable
 }
