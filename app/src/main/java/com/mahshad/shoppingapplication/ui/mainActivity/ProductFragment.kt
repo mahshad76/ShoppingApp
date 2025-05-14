@@ -11,6 +11,8 @@ class ProductFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //subscribe on the combined data
+        //give the data to the adaptor
 
     }
 
