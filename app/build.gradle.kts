@@ -69,6 +69,7 @@ dependencies {
     //dagger2
     implementation(libs.dagger)
     implementation(libs.play.services.analytics.impl)
+    implementation(libs.androidx.constraintlayout)
     kapt(libs.dagger.compiler)
 
     //rxjava2
