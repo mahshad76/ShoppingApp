@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahshad.shoppingapplication.MyApplication
 import com.mahshad.shoppingapplication.R
-import com.mahshad.shoppingapplication.databinding.MainActivityBinding
 import com.mahshad.shoppingapplication.data.network.ApiService
+import com.mahshad.shoppingapplication.databinding.MainActivityBinding
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -43,23 +43,6 @@ class MainActivity : AppCompatActivity() {
     private fun productFragmentReplacement(fragment: Fragment): Boolean {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
-        val call = apiService.getProducts()
-//        call.enqueue(object : Callback<List<Product>> {
-//            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-//                if (response.isSuccessful) {
-//                    Log.i("TAG", "${response.body()}")
-//
-//                } else {
-//                    Log.e("TAG", "onResponse: ${response.errorBody()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-//                Log.e("TAG", "onFailure: ${t.message}")
-//            }
-//
-//        })
-
         return true
     }
 
