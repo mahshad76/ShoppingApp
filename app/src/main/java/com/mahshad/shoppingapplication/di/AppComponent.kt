@@ -2,6 +2,7 @@ package com.mahshad.shoppingapplication.di
 
 import android.content.Context
 import com.mahshad.shoppingapplication.ui.mainActivity.MainActivity
+import com.mahshad.shoppingapplication.ui.mainActivity.ProductFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -23,4 +24,5 @@ interface AppComponent {
     }
 
     fun inject(activity: MainActivity)
+    fun inject(fragment: ProductFragment)
 }

@@ -1,6 +1,6 @@
 package com.mahshad.shoppingapplication.data.models
 
-import com.mahshad.shoppingapplication.data.models.response.RatingDTO
+
 
 data class Product(
     val category: String?,
@@ -8,7 +8,7 @@ data class Product(
     val id: Int?,
     val image: String?,
     val price: Double?,
-    val ratingDTO: RatingDTO?,
+    val rating: Rating?,
     val title: String?,
     val isFavorite: Boolean = false
 )
