@@ -82,10 +82,27 @@ class SecondProductRepository @Inject constructor
             } else {
                 emptyList<Product>()
             }
-        }
+        }.subscribeOn(computationScheduler)
     }
 
     override fun getFavoriteProducts(): Flowable<List<Product>> {
-        TODO("Not yet implemented")
+        return productLocalDataSource.getAllProduct().map { productEntities ->
+            productEntities.map { productEntity ->
+                Product(
+                    category = null,
+                    description = productEntity.description,
+                    id = productEntity.id,
+                    image = productEntity.image,
+                    price = productEntity.price,
+                    rating = Rating(
+                        count = null,
+                        rate = null
+                    ),
+                    title = null,
+                    isFavorite = true
+                )
+            }
+
+        }.subscribeOn(computationScheduler)
     }
 }
