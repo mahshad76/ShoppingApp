@@ -4,6 +4,7 @@ import com.mahshad.shoppingapplication.data.datasource.local.product.DefaultProd
 import com.mahshad.shoppingapplication.data.datasource.remote.NetworkRemoteDataSource
 import com.mahshad.shoppingapplication.data.models.Product
 import com.mahshad.shoppingapplication.data.models.Rating
+import com.mahshad.shoppingapplication.data.models.response.ProductDTO
 import com.mahshad.shoppingapplication.di.ComputationScheduler
 import io.reactivex.Flowable
 import io.reactivex.Scheduler
@@ -58,7 +59,30 @@ class SecondProductRepository @Inject constructor
     }
 
     override fun getProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
+        val singleProductDtos: Single<retrofit2.Response<List<ProductDTO>>> =
+            productRemoteDataSource.getProducts()
+        return singleProductDtos.map { response ->
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    it.map {
+                        Product(
+                            category = it.category,
+                            description = it.description,
+                            id = it.id,
+                            image = it.image,
+                            price = it.price,
+                            rating = Rating(
+                                it.ratingDTO?.count,
+                                it.ratingDTO?.rate
+                            ),
+                            title = it.title
+                        )
+                    }
+                } ?: emptyList<Product>()
+            } else {
+                emptyList<Product>()
+            }
+        }
     }
 
     override fun getFavoriteProducts(): Flowable<List<Product>> {
