@@ -1,0 +1,67 @@
+package com.mahshad.shoppingapplication.data.repository.product
+
+import com.mahshad.shoppingapplication.data.datasource.local.product.DefaultProductLocalDataSource
+import com.mahshad.shoppingapplication.data.datasource.remote.NetworkRemoteDataSource
+import com.mahshad.shoppingapplication.data.models.Product
+import com.mahshad.shoppingapplication.data.models.Rating
+import com.mahshad.shoppingapplication.di.ComputationScheduler
+import io.reactivex.Flowable
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import javax.inject.Inject
+
+class SecondProductRepository @Inject constructor
+    (
+    val productLocalDataSource: DefaultProductLocalDataSource,
+    val productRemoteDataSource: NetworkRemoteDataSource,
+    @ComputationScheduler val computationScheduler: Scheduler
+) : ProductRepository {
+    /**
+     * this is the product repository producing the list of products out of the database, network,
+     * and their combination.
+     */
+    override fun getModifiedProducts(): Flowable<List<Product>> {
+        /**
+         * getting the products from the database and the server,
+         * create the updated list of products
+         */
+        return Flowable.combineLatest(
+            productRemoteDataSource.getProducts().toFlowable(),
+            productLocalDataSource.getAllProduct()
+        ) { listProductDTOs, listProductEntities ->
+            if (listProductDTOs.isSuccessful) {
+                val productDtos = listProductDTOs.body()
+                productDtos?.let {
+                    productDtos.map { productDto ->
+                        val isFavorite = listProductEntities.any { productDto.id == it.id }
+                        Product(
+                            category = productDto.category,
+                            description = productDto.description,
+                            id = productDto.id,
+                            image = productDto.image,
+                            price = productDto.price,
+                            rating = Rating(
+                                productDto.ratingDTO?.count,
+                                productDto.ratingDTO?.rate
+                            ),
+                            title = productDto.title,
+                            isFavorite = isFavorite
+                        )
+
+                    }
+                } ?: emptyList<Product>()
+            } else {
+                emptyList<Product>()
+            }
+
+        }.subscribeOn(computationScheduler)
+    }
+
+    override fun getProducts(): Single<List<Product>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFavoriteProducts(): Flowable<List<Product>> {
+        TODO("Not yet implemented")
+    }
+}
