@@ -1,8 +1,8 @@
 package com.mahshad.shoppingapplication.di
 
 import android.content.Context
-import com.mahshad.shoppingapplication.ui.mainActivity.MainActivity
-import com.mahshad.shoppingapplication.ui.mainActivity.ProductFragment
+import com.mahshad.shoppingapplication.ui.MainActivity
+import com.mahshad.shoppingapplication.ui.product.ProductFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

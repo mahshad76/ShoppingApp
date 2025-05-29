@@ -7,6 +7,7 @@ import com.mahshad.shoppingapplication.data.models.Product
 import com.mahshad.shoppingapplication.data.models.Rating
 import com.mahshad.shoppingapplication.data.models.response.ProductDTO
 import com.mahshad.shoppingapplication.di.ComputationScheduler
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -96,5 +97,18 @@ class DefaultProductRepository @Inject constructor(
 
             }
         }.subscribeOn(computationScheduler)
+    }
+
+    override fun bookmarkedProduct(product: Product): Completable {
+        return product.let {
+            ProductEntity(
+                description = it.description,
+                id = it.id,
+                image = it.image,
+                price = it.price
+            )
+        }.let { productEntity ->
+            localDataSource.insert(productEntity)
+        }
     }
 }

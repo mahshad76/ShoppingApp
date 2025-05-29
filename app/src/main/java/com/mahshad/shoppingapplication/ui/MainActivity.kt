@@ -1,4 +1,4 @@
-package com.mahshad.shoppingapplication.ui.mainActivity
+package com.mahshad.shoppingapplication.ui
 
 import android.os.Bundle
 import android.widget.FrameLayout
@@ -8,6 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahshad.shoppingapplication.MyApplication
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.databinding.MainActivityBinding
+import com.mahshad.shoppingapplication.ui.category.CategoriesFragment
+import com.mahshad.shoppingapplication.ui.product.ProductFragment
 
 class MainActivity : AppCompatActivity() {
 

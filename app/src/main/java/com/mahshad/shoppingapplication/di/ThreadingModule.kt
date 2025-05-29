@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -25,6 +26,10 @@ object ThreadingModule {
     @Singleton
     @MainScheduler
     fun provideAndroidScheduler(): Scheduler = AndroidSchedulers.mainThread()
+
+    @Provides
+    fun provideCompositeDisposable() = CompositeDisposable()
+
 }
 
 @Qualifier

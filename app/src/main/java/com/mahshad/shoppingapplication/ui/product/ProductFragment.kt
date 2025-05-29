@@ -1,4 +1,4 @@
-package com.mahshad.shoppingapplication.ui.mainActivity
+package com.mahshad.shoppingapplication.ui.product
 
 import android.os.Bundle
 import android.view.LayoutInflater
