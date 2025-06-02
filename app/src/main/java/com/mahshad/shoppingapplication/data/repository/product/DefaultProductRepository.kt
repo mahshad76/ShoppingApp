@@ -99,7 +99,7 @@ class DefaultProductRepository @Inject constructor(
         }.subscribeOn(computationScheduler)
     }
 
-    override fun bookmarkedProduct(product: Product): Completable {
+    override fun bookmarkProduct(product: Product): Completable {
         return product.let {
             ProductEntity(
                 description = it.description,
