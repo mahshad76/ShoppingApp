@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigator: BottomNavigationView
     lateinit var fragmentContainer: FrameLayout
 
-    @Inject
-    lateinit var apiService: ApiService
+//    @Inject
+//    lateinit var apiService: ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
