@@ -1,7 +1,5 @@
 package com.mahshad.shoppingapplication.data.models
 
-
-
 data class Product(
     val category: String?,
     val description: String?,
