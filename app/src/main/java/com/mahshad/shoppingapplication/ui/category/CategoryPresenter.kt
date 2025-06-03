@@ -17,6 +17,7 @@ class CategoryPresenter @Inject constructor(
 ) : CategoryContract.Presenter {
     private var view: CategoryContract.View? = null
     private val disposables = CompositeDisposable()
+
     override fun getCategories() {
         view?.showLoading()
         val disposable: Disposable = remoteRepository
@@ -31,11 +32,14 @@ class CategoryPresenter @Inject constructor(
                             nonNullView.showCategories(response.body())
                         }
                     } else {
-                        Log.e("TAG", "getCategories")
+                        Log.e("PRESENTER", "response to the category api is unsuccessful")
                     }
                 },
                 { e: Throwable ->
-                    println("Sth went wrong: ${e.message}")
+                    view?.let { nonNullView: CategoryContract.View ->
+                        nonNullView.hideLoading()
+                        nonNullView.showErrorMessage(e.message.toString())
+                    }
                 })
         disposables.add(disposable)
     }
@@ -45,9 +49,8 @@ class CategoryPresenter @Inject constructor(
     }
 
     override fun detachView(view: CategoryContract.View) {
-        TODO("Not yet implemented")
+        this.view = null
     }
 
-    override fun destroy() {
-    }
+    override fun destroy() = disposables.clear()
 }

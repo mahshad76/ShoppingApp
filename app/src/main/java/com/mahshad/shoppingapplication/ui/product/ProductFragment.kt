@@ -25,6 +25,9 @@ class ProductFragment : Fragment() {
     @Inject
     lateinit var productRepository: ProductRepository
 
+    @Inject
+    lateinit var productPresenter: ProductPresenter
+
     companion object {
         private const val TAG = "SubscriptionTag"
     }
@@ -59,12 +62,7 @@ class ProductFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = ProductAdaptor(dataList)
         recyclerView.adapter = adapter
-
     }
-
-    //    fun subscribeToDataFlowable(){
-//
-//    }
 }
 
 
