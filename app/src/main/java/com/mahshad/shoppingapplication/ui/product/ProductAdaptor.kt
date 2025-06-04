@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
@@ -23,8 +22,8 @@ class ProductAdaptor(private val productList: List<Product>) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.title.text = productList[position].title
-        holder.category.text = productList[position].category
-        holder.likeButton.isChecked = productList[position].isFavorite
+        /*holder.category.text = productList[position].category
+        holder.likeButton.isChecked = productList[position].isFavorite*/
     }
 
 }
@@ -32,6 +31,6 @@ class ProductAdaptor(private val productList: List<Product>) :
 //TODO: add binding
 class ProductViewHolder(productView: View) : RecyclerView.ViewHolder(productView) {
     val title = productView.findViewById<TextView>(R.id.product_title)
-    val category = productView.findViewById<TextView>(R.id.product_category)
-    val likeButton = productView.findViewById<ToggleButton>(R.id.item_toggle)
+    /*val category = productView.findViewById<TextView>(R.id.product_category)
+    val likeButton = productView.findViewById<ToggleButton>(R.id.item_toggle)*/
 }

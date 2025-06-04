@@ -48,7 +48,7 @@ class CategoryPresenter @Inject constructor(
         this.view = view
     }
 
-    override fun detachView(view: CategoryContract.View) {
+    override fun detachView() {
         this.view = null
     }
 

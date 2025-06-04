@@ -8,5 +8,5 @@ import dagger.Module
 @Module
 abstract class ProductPresenterModule {
     @Binds
-    abstract fun bindProductPresenter(defaultProductPresenter: ProductContract): ProductPresenter
+    abstract fun bindProductPresenter(defaultProductPresenter: ProductPresenter): ProductContract.Presenter
 }

@@ -74,7 +74,7 @@ class ProductPresenter @Inject constructor(
         this.view = view
     }
 
-    override fun detachView(view: ProductContract.View) {
+    override fun detachView() {
         this.view = null
     }
 
