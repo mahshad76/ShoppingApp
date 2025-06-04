@@ -19,7 +19,6 @@ import javax.inject.Inject
 class ProductFragment : Fragment(), ProductContract.View {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ProductAdaptor
     private lateinit var view: View
 
     @Inject
@@ -83,14 +82,11 @@ class ProductFragment : Fragment(), ProductContract.View {
         TODO("Not yet implemented")
     }
 
-    //where I have to set up the adaptor and attach it to the recycler view
     override fun showProducts(products: List<Product>) {
         //TODO
     }
 
     override fun showModifiedProducts(products: List<Product>) {
-//        adapter = ProductAdaptor(products)
-//        recyclerView.adapter = adapter
         recyclerView = view.findViewById(R.id.products_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = context?.let { ProductAdaptor(it, products) }
