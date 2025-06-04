@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.mahshad.shoppingapplication.MyApplication
@@ -46,8 +46,6 @@ class ProductFragment : Fragment(), ProductContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productPresenter.getModifiedProducts()
-//        recyclerView = view.findViewById(R.id.products_recycler_view)
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDetach() {
@@ -93,7 +91,9 @@ class ProductFragment : Fragment(), ProductContract.View {
     override fun showModifiedProducts(products: List<Product>) {
 //        adapter = ProductAdaptor(products)
 //        recyclerView.adapter = adapter
-        view.findViewById<TextView>(R.id.text_view).text = products.toString()
+        recyclerView = view.findViewById(R.id.products_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = context?.let { ProductAdaptor(it, products) }
     }
 
     override fun showBookmarkSuccessMessage() {

@@ -12,16 +12,16 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TextView" />
+<!--    <TextView-->
+<!--        android:id="@+id/text_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="TextView" />-->
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/products_recycler_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/products_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </FrameLayout>
