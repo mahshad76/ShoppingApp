@@ -70,6 +70,20 @@ class ProductPresenter @Inject constructor(
         )
     }
 
+    override fun unBookMarkProduct(productId: Int) {
+        compositeDisposable.add(
+            productRepository.unBookmarkProduct(productId)
+                .subscribeOn(ioScheduler)
+                .observeOn(mainScheduler)
+                .subscribe({
+                    view?.showUnBookmarkSuccessMessage()
+                }, { error ->
+                    view?.showErrorMessage(error.message ?: "Unknown error")
+                })
+        )
+
+    }
+
     override fun attachView(view: ProductContract.View) {
         this.view = view
     }

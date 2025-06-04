@@ -8,5 +8,5 @@ data class Product(
     val price: Double?,
     val rating: Rating?,
     val title: String?,
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 )

@@ -111,4 +111,10 @@ class DefaultProductRepository @Inject constructor(
             localDataSource.insert(productEntity)
         }
     }
+
+    override fun unBookmarkProduct(productId: Int): Completable {
+        return localDataSource.delete(productId)
+    }
+
+
 }

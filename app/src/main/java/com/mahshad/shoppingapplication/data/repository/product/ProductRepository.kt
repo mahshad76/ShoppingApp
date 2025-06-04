@@ -10,4 +10,5 @@ interface ProductRepository {
     fun getProducts(): Single<List<Product>>
     fun getFavoriteProducts(): Flowable<List<Product>>
     fun bookmarkProduct(product: Product): Completable
+    fun unBookmarkProduct(productId: Int): Completable
 }

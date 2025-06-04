@@ -33,9 +33,9 @@ class ProductAdaptor(
         holder.isFavorite.imageTintList = if (productList[position].isFavorite) {
             ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red_heart))
         } else {
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white))
+            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black))
         }
-        holder.isFavorite.setOnClickListener { clickListener.onItemClick(position) }
+        holder.isFavorite.setOnClickListener { clickListener.onItemClick(productList[position]) }
     }
 
 }
@@ -49,5 +49,5 @@ class ProductViewHolder(productView: View) : RecyclerView.ViewHolder(productView
 
 interface OnItemClickListener {
     ///give the position as input if I want to move to the detail activity
-    fun onItemClick(position: Int)
+    fun onItemClick(productItem: Product)
 }

@@ -16,7 +16,7 @@ import com.mahshad.shoppingapplication.data.models.Product
 import javax.inject.Inject
 
 
-class ProductFragment : Fragment(), ProductContract.View {
+class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var view: View
@@ -89,12 +89,31 @@ class ProductFragment : Fragment(), ProductContract.View {
     override fun showModifiedProducts(products: List<Product>) {
         recyclerView = view.findViewById(R.id.products_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = context?.let { ProductAdaptor(it, products) }
+        recyclerView.adapter = context?.let { ProductAdaptor(it, products, this) }
     }
 
     override fun showBookmarkSuccessMessage() {
-        Snackbar.make(view, "Successful", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Like :)", Snackbar.LENGTH_LONG)
             .show()
+    }
+
+    override fun showUnBookmarkSuccessMessage() {
+        Snackbar.make(view, "Dislike :(", Snackbar.LENGTH_LONG)
+            .show()
+    }
+
+    override fun onItemClick(product: Product) {
+        ///val favoriteIcon = view.findViewById<ImageView>(R.id.favorite_icon)
+        product.isFavorite = !product.isFavorite
+        if (product.isFavorite) {
+            productPresenter.bookmarkProduct(product)
+            showBookmarkSuccessMessage()
+        } else {
+            product.id?.let {
+                productPresenter.unBookMarkProduct(it)
+                showUnBookmarkSuccessMessage()
+            }
+        }
     }
 }
 
