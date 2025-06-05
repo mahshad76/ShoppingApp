@@ -69,6 +69,7 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun showLoading() {
+        //TODO define the view in oncreate
         val progressBar = view.findViewById<ProgressBar>(R.id.loading_progress_bar)
         progressBar.isVisible = true
     }
@@ -83,10 +84,11 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun showProducts(products: List<Product>) {
-        //TODO
+        //TODO implement it R&D (having the like as the session is up)
     }
 
     override fun showModifiedProducts(products: List<Product>) {
+        //TODO private lateinit var
         recyclerView = view.findViewById(R.id.products_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = context?.let { ProductAdaptor(it, products, this) }
@@ -102,16 +104,16 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
             .show()
     }
 
-    override fun onItemClick(product: Product) {
-        ///val favoriteIcon = view.findViewById<ImageView>(R.id.favorite_icon)
-        product.isFavorite = !product.isFavorite
-        if (product.isFavorite) {
-            productPresenter.bookmarkProduct(product)
-            showBookmarkSuccessMessage()
-        } else {
-            product.id?.let {
-                productPresenter.unBookMarkProduct(it)
-                showUnBookmarkSuccessMessage()
+    override fun onItemClick(productItem: Product) {
+        productItem.copy(isFavorite = !productItem.isFavorite).let { updatedProduct ->
+            if (updatedProduct.isFavorite) {
+                productPresenter.bookmarkProduct(updatedProduct)
+                showBookmarkSuccessMessage()
+            } else {
+                updatedProduct.id?.let {
+                    productPresenter.unBookmarkProduct(it)
+                    showUnBookmarkSuccessMessage()
+                }
             }
         }
     }

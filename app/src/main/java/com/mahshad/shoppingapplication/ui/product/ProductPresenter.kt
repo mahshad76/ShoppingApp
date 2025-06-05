@@ -70,7 +70,7 @@ class ProductPresenter @Inject constructor(
         )
     }
 
-    override fun unBookMarkProduct(productId: Int) {
+    override fun unBookmarkProduct(productId: Int) {
         compositeDisposable.add(
             productRepository.unBookmarkProduct(productId)
                 .subscribeOn(ioScheduler)

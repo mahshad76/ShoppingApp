@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 
+//TODO do not pass the context
 class ProductAdaptor(
     private val context: Context, private val productList: List<Product>,
     private val clickListener: OnItemClickListener
@@ -33,9 +34,9 @@ class ProductAdaptor(
         holder.title.text = productList[position].category
         holder.rate.text = productList[position].rating?.rate.toString()
         holder.isFavorite.imageTintList = if (productList[position].isFavorite) {
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red_heart))
+            ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.red_heart))
         } else {
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black))
+            ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
         holder.productCard.setOnClickListener { clickListener.onItemClick(productList[position]) }
         holder.isFavorite.setOnClickListener { clickListener.onItemClick(productList[position]) }

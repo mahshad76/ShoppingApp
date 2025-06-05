@@ -20,7 +20,7 @@ interface ProductContract {
         fun getModifiedProducts()
         fun getProducts()
         fun bookmarkProduct(product: Product)
-        fun unBookMarkProduct(productId: Int)
+        fun unBookmarkProduct(productId: Int)
     }
 
 }
