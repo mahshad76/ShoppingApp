@@ -47,7 +47,7 @@ android {
 
 dependencies {
 
-    implementation (libs.rx.preferences)
+    implementation(libs.rx.preferences)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -76,7 +76,7 @@ dependencies {
     implementation(libs.rxjava2)
     implementation(libs.rxandroid)
     implementation(libs.retrofit2.adapter.rxjava2)
-    implementation (libs.rxjava2.extensions)
+    implementation(libs.rxjava2.extensions)
 
 
     //room
@@ -86,6 +86,9 @@ dependencies {
     implementation(libs.androidx.room.rxjava2)
     kapt(libs.androidx.room.compiler.v261)
 
+    //glide
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

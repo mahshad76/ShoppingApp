@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 
@@ -35,16 +37,23 @@ class ProductAdaptor(
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black))
         }
+        holder.productCard.setOnClickListener { clickListener.onItemClick(productList[position]) }
         holder.isFavorite.setOnClickListener { clickListener.onItemClick(productList[position]) }
+        Glide.with(context)
+            .load(productList[position].image)
+            .into(holder.productImage)
+
     }
 
 }
 
 //TODO: add binding
 class ProductViewHolder(productView: View) : RecyclerView.ViewHolder(productView) {
+    val productCard = productView.findViewById<CardView>(R.id.productCard)
     val title = productView.findViewById<TextView>(R.id.product_category)
     val rate = productView.findViewById<TextView>(R.id.product_rate)
     val isFavorite = productView.findViewById<ImageView>(R.id.favorite_icon)
+    val productImage = productView.findViewById<ImageView>(R.id.myImageView)
 }
 
 interface OnItemClickListener {
