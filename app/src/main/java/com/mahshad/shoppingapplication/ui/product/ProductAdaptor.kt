@@ -1,6 +1,5 @@
 package com.mahshad.shoppingapplication.ui.product
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,7 @@ import com.mahshad.shoppingapplication.data.models.Product
 
 //TODO do not pass the context
 class ProductAdaptor(
-    private val context: Context, private val productList: List<Product>,
+    private val productList: List<Product>,
     private val clickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<ProductViewHolder>() {
@@ -34,13 +33,18 @@ class ProductAdaptor(
         holder.title.text = productList[position].category
         holder.rate.text = productList[position].rating?.rate.toString()
         holder.isFavorite.imageTintList = if (productList[position].isFavorite) {
-            ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.red_heart))
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.red_heart
+                )
+            )
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
         holder.productCard.setOnClickListener { clickListener.onItemClick(productList[position]) }
         holder.isFavorite.setOnClickListener { clickListener.onItemClick(productList[position]) }
-        Glide.with(context)
+        Glide.with(holder.itemView.context)
             .load(productList[position].image)
             .into(holder.productImage)
 
