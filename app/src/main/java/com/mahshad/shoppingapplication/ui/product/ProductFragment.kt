@@ -19,6 +19,7 @@ import javax.inject.Inject
 class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
     private lateinit var view: View
 
     @Inject
@@ -39,6 +40,8 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     ): View {
         productPresenter.attachView(this)
         view = inflater.inflate(R.layout.fragment_product, container, false)
+        recyclerView = view.findViewById(R.id.products_recycler_view)
+        progressBar = view.findViewById(R.id.loading_progress_bar)
         return view
     }
 
@@ -69,13 +72,10 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun showLoading() {
-        //TODO define the view in oncreate
-        val progressBar = view.findViewById<ProgressBar>(R.id.loading_progress_bar)
         progressBar.isVisible = true
     }
 
     override fun hideLoading() {
-        val progressBar = view.findViewById<ProgressBar>(R.id.loading_progress_bar)
         progressBar.isVisible = false
     }
 
@@ -88,10 +88,8 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun showModifiedProducts(products: List<Product>) {
-        //TODO private lateinit var
-        recyclerView = view.findViewById(R.id.products_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = context?.let { ProductAdaptor(it, products, this) }
+        recyclerView.adapter = ProductAdaptor(products, this)
     }
 
     override fun showBookmarkSuccessMessage() {

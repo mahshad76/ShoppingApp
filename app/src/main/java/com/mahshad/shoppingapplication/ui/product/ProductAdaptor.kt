@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 
-//TODO do not pass the context
 class ProductAdaptor(
     private val productList: List<Product>,
     private val clickListener: OnItemClickListener
