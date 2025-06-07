@@ -102,7 +102,7 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
             .show()
     }
 
-    override fun onItemClick(productItem: Product) {
+    override fun onFavoriteClick(productItem: Product) {
         productItem.copy(isFavorite = !productItem.isFavorite).let { updatedProduct ->
             if (updatedProduct.isFavorite) {
                 productPresenter.bookmarkProduct(updatedProduct)
@@ -114,6 +114,16 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
                 }
             }
         }
+    }
+
+    override fun onRowClick(productItem: Product) {
+        parentFragmentManager.beginTransaction()
+            .replace(
+                R.id.fragment_container,
+                DetailFragment()
+            )
+            .addToBackStack(null)
+            .commit()
     }
 }
 

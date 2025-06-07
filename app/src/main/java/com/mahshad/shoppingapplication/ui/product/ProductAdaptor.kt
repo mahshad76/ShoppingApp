@@ -41,8 +41,8 @@ class ProductAdaptor(
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
-        holder.productCard.setOnClickListener { clickListener.onItemClick(productList[position]) }
-        holder.isFavorite.setOnClickListener { clickListener.onItemClick(productList[position]) }
+        holder.productCard.setOnClickListener { clickListener.onRowClick(productList[position]) }
+        holder.isFavorite.setOnClickListener { clickListener.onFavoriteClick(productList[position]) }
         Glide.with(holder.itemView.context)
             .load(productList[position].image)
             .into(holder.productImage)
@@ -62,5 +62,6 @@ class ProductViewHolder(productView: View) : RecyclerView.ViewHolder(productView
 
 interface OnItemClickListener {
     ///give the position as input if I want to move to the detail activity
-    fun onItemClick(productItem: Product)
+    fun onFavoriteClick(productItem: Product)
+    fun onRowClick(productItem: Product)
 }
