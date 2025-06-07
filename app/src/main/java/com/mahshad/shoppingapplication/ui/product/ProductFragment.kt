@@ -117,14 +117,17 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun onRowClick(productItem: Product) {
+        val detailFragment = DetailFragment()
+        val bundle = Bundle().apply {
+            putString(DetailFragment.ARG_MESSAGE, productItem.description)
+        }
+        detailFragment.arguments = bundle
         parentFragmentManager.beginTransaction()
             .replace(
                 R.id.fragment_container,
-                DetailFragment()
+                detailFragment
             )
             .addToBackStack(null)
             .commit()
     }
 }
-
-
