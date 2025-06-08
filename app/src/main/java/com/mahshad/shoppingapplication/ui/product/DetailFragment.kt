@@ -5,10 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
+
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.mahshad.shoppingapplication.R
 
 class DetailFragment : Fragment() {
+
+    private lateinit var toolBar: Toolbar
+    private lateinit var textView: TextView
 
     companion object {
         const val ARG_MESSAGE = "param_message"
@@ -23,7 +30,15 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
-        val textView = view.findViewById<TextView>(R.id.description_text)
+        textView = view.findViewById(R.id.description_text)
+        toolBar = view.findViewById(R.id.toolbar)
+        (activity as? AppCompatActivity)?.setSupportActionBar(toolBar)
+        val actionBar: ActionBar? = (activity as AppCompatActivity).supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setHomeButtonEnabled(true)
+
+        // Set a custom title (optional)
+        actionBar?.title = "Custom Fragment Title"
         arguments?.let {
             val message = it.getString(ARG_MESSAGE)
             textView.text = message
