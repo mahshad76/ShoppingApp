@@ -36,9 +36,10 @@ class DetailFragment : Fragment() {
         val actionBar: ActionBar? = (activity as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setHomeButtonEnabled(true)
-
-        // Set a custom title (optional)
-        actionBar?.title = "Custom Fragment Title"
+        actionBar?.title = "List of products"
+        toolBar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
         arguments?.let {
             val message = it.getString(ARG_MESSAGE)
             textView.text = message
