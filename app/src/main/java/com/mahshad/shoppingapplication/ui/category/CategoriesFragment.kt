@@ -40,6 +40,22 @@ class CategoriesFragment :
         return view
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        presenter.detachView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.destroy()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.detachView()
+        presenter.destroy()
+    }
+
     override fun showErrorMessage(message: String) {
         Snackbar.make(view, message, Snackbar.LENGTH_LONG)
             .show()

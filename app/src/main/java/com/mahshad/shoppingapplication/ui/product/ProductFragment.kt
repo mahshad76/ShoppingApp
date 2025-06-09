@@ -104,12 +104,12 @@ class ProductFragment : Fragment(), ProductContract.View, OnItemClickListener {
     }
 
     override fun showBookmarkSuccessMessage() {
-        Snackbar.make(view, "Like :)", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Like :)", 1000)
             .show()
     }
 
     override fun showUnBookmarkSuccessMessage() {
-        Snackbar.make(view, "Dislike :(", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Dislike :(", 1000)
             .show()
     }
 
