@@ -9,7 +9,7 @@ interface ProductContract {
         fun showErrorMessage(message: String)
         fun showLoading()
         fun hideLoading()
-        fun navigateToProductDetail()
+        fun navigateToProductDetail(productItem: Product)
         fun showProducts(products: List<Product>)
         fun showModifiedProducts(products: List<Product>)
         fun showBookmarkSuccessMessage()
