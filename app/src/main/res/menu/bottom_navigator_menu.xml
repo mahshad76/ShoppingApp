@@ -9,4 +9,9 @@
         android:id="@+id/categories"
         android:icon="@drawable/category_svgrepo_com"
         android:title="Category" />
+
+    <item
+        android:id="@+id/localProducts"
+        android:icon="@drawable/product_service_campaign_item_svgrepo_com"
+        android:title="Local-Product" />
 </menu>
