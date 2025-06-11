@@ -10,6 +10,7 @@ import com.mahshad.shoppingapplication.common.MainActivityCallbacks
 import com.mahshad.shoppingapplication.common.extension.replaceFragment
 import com.mahshad.shoppingapplication.databinding.MainActivityBinding
 import com.mahshad.shoppingapplication.ui.category.CategoriesFragment
+import com.mahshad.shoppingapplication.ui.localProducts.LocalProductFragment
 import com.mahshad.shoppingapplication.ui.product.ProductFragment
 
 class MainActivity : AppCompatActivity(), MainActivityCallbacks {
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(), MainActivityCallbacks {
                 R.id.products -> replaceFragment(fragment = ProductFragment())
 
                 R.id.categories -> replaceFragment(fragment = CategoriesFragment())
+
+                R.id.localProducts -> replaceFragment(fragment = LocalProductFragment())
 
                 else -> false
             }
