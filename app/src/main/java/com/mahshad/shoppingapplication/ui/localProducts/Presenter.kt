@@ -1,22 +1,42 @@
 package com.mahshad.shoppingapplication.ui.localProducts
 
 import com.mahshad.shoppingapplication.data.models.Product
-import io.reactivex.Single
+import com.mahshad.shoppingapplication.data.repository.product.ProductRepository
+import com.mahshad.shoppingapplication.di.ComputationScheduler
+import com.mahshad.shoppingapplication.di.MainScheduler
+import io.reactivex.Scheduler
+import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
-class Presenter: Contract.Presenter {
-    override fun getProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
+class Presenter @Inject constructor(
+    private val productRepository: ProductRepository,
+    @ComputationScheduler private val computationScheduler: Scheduler,
+    @MainScheduler private val mainScheduler: Scheduler
+) : Contract.Presenter {
+    private var view: Contract.View? = null
+    private var disposableList: MutableList<Disposable> = mutableListOf()
+
+    override fun getProducts() {
+        view?.let { nonNullView ->
+            val disposable = productRepository.getProducts()
+                .subscribeOn(computationScheduler)
+                .observeOn(mainScheduler)
+                .subscribe({ response: List<Product> ->
+                    nonNullView.showProducts(response)
+                })
+            disposableList.add(disposable)
+        }
     }
 
-    override fun onAttach() {
-        TODO("Not yet implemented")
+    override fun onAttach(view: Contract.View) {
+        this.view = view
     }
 
     override fun onDetach() {
-        TODO("Not yet implemented")
+        this.view = null
     }
 
     override fun onDestroy() {
-        TODO("Not yet implemented")
+        disposableList.clear()
     }
 }

@@ -1,18 +1,18 @@
 package com.mahshad.shoppingapplication.ui.localProducts
 
 import com.mahshad.shoppingapplication.data.models.Product
-import io.reactivex.Single
 
 interface Contract {
     interface View {
-        fun showError()
+        fun showErrorMessage(message: String)
         fun showLoading()
-        fun showProducts()
+        fun hideLoading()
+        fun showProducts(response: List<Product>)
     }
 
     interface Presenter {
-        fun getProducts(): Single<List<Product>>
-        fun onAttach()
+        fun getProducts()
+        fun onAttach(view: View)
         fun onDetach()
         fun onDestroy()
     }

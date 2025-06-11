@@ -3,6 +3,7 @@ package com.mahshad.shoppingapplication.di
 import android.content.Context
 import com.mahshad.shoppingapplication.ui.MainActivity
 import com.mahshad.shoppingapplication.ui.category.CategoriesFragment
+import com.mahshad.shoppingapplication.ui.localProducts.LocalProductFragment
 import com.mahshad.shoppingapplication.ui.product.ProductFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -29,4 +30,5 @@ interface AppComponent {
     fun inject(activity: MainActivity)
     fun inject(fragment: ProductFragment)
     fun inject(fragment: CategoriesFragment)
+    fun inject(fragment: LocalProductFragment)
 }
