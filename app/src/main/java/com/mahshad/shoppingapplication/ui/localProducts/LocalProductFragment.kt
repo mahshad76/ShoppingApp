@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.mahshad.shoppingapplication.MyApplication
 import com.mahshad.shoppingapplication.R
@@ -18,7 +19,7 @@ class LocalProductFragment : Fragment(), Contract.View {
 
     private lateinit var view: View
     private lateinit var progressBar: ProgressBar
-    private lateinit var textView: TextView
+    private lateinit var recyclerView: RecyclerView
 
     @Inject
     lateinit var presenter: Contract.Presenter
@@ -35,7 +36,7 @@ class LocalProductFragment : Fragment(), Contract.View {
     ): View {
         view = inflater.inflate(R.layout.fragment_local_product, container, false)
         progressBar = view.findViewById(R.id.loading_progress_bar2)
-        textView = view.findViewById(R.id.textView3)
+        recyclerView = view.findViewById(R.id.products_recycler_view3)
         presenter.getProducts()
         return view
     }
@@ -54,6 +55,9 @@ class LocalProductFragment : Fragment(), Contract.View {
     }
 
     override fun showProducts(response: List<Product>) {
-        textView.text = "The response length is: ${response.size}"
+        recyclerView.layoutManager=LinearLayoutManager(context)
+        recyclerView.adapter = Adaptor(response)
+        //textView.text = "The response length is: ${response.size}"
+
     }
 }
