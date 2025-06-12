@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -40,7 +39,10 @@ class Adaptor(
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
-        //holder.isFavorite.setOnClickListener { clickListener.onFavoriteClick(productList[position]) }
+        holder.isFavorite.setOnClickListener {
+            productList[position].isFavorite = !productList[position].isFavorite
+            notifyItemChanged(position)
+        }
         Glide.with(holder.itemView.context)
             .load(productList[position].image)
             .into(holder.productImage)
@@ -50,13 +52,8 @@ class Adaptor(
 }
 
 class ViewHolder(productView: View) : RecyclerView.ViewHolder(productView) {
-    val productCard = productView.findViewById<CardView>(R.id.productCard)
     val title = productView.findViewById<TextView>(R.id.product_category)
     val rate = productView.findViewById<TextView>(R.id.product_rate)
     val isFavorite = productView.findViewById<ImageView>(R.id.favorite_icon)
     val productImage = productView.findViewById<ImageView>(R.id.myImageView)
-}
-
-interface OnItemClickListener {
-    fun onFavoriteClick(productItem: Product)
 }
