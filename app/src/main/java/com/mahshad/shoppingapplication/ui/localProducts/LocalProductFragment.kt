@@ -55,9 +55,11 @@ class LocalProductFragment : Fragment(), Contract.View {
     }
 
     override fun showProducts(response: List<Product>) {
-        recyclerView.layoutManager=LinearLayoutManager(context)
-        recyclerView.adapter = Adaptor(response)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = Adaptor(response, clickListener)
         //textView.text = "The response length is: ${response.size}"
 
     }
+
+    val clickListener = { product: Product -> print("") }
 }

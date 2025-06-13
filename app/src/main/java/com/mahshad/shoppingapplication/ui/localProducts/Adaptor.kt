@@ -13,7 +13,7 @@ import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 
 class Adaptor(
-    private val productList: List<Product>
+    private val productList: List<Product>, private val clickListener: (Product) -> Unit
 ) :
     RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,7 +21,14 @@ class Adaptor(
             R.layout.product_layout,
             parent, false
         )
-        return ViewHolder(viewLayout)
+        val viewObject = ViewHolder(viewLayout)
+        viewObject.isFavorite.setOnClickListener {
+            val position = viewObject.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                clickListener(productList[position])
+            }
+        }
+        return viewObject
     }
 
     override fun getItemCount() = productList.size
@@ -39,10 +46,10 @@ class Adaptor(
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
-        holder.isFavorite.setOnClickListener {
-            productList[position].isFavorite = !productList[position].isFavorite
-            notifyItemChanged(position)
-        }
+//        holder.isFavorite.setOnClickListener {
+//            productList[position].isFavorite = !productList[position].isFavorite
+//            notifyItemChanged(position)
+        // }
         Glide.with(holder.itemView.context)
             .load(productList[position].image)
             .into(holder.productImage)
