@@ -61,5 +61,7 @@ class LocalProductFragment : Fragment(), Contract.View {
 
     }
 
-    val clickListener = { product: Product -> print("") }
+    val clickListener = { product: Product, position: Int ->
+        println("recieved")
+    }
 }
