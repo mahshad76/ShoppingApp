@@ -16,6 +16,7 @@ class Presenter @Inject constructor(
 ) : Contract.Presenter {
     private var view: Contract.View? = null
     private var disposableList: MutableList<Disposable> = mutableListOf()
+    private var cachedProducts: MutableList<Product>? = null
 
     override fun getProducts() {
         view?.showLoading()
@@ -35,6 +36,7 @@ class Presenter @Inject constructor(
                     }
 
                     override fun onSuccess(t: List<Product>) {
+                        cachedProducts = t.toMutableList()
                         nonNullView.hideLoading()
                         nonNullView.showProducts(t)
 
@@ -54,5 +56,12 @@ class Presenter @Inject constructor(
 
     override fun onDestroy() {
         disposableList.clear()
+    }
+
+    override fun updateData(product: Product, position: Int) {
+        cachedProducts?.apply {
+            this[position] = product.copy(isFavorite = !product.isFavorite)
+        }
+        cachedProducts?.let { view?.notifyDataUpdate(it) }
     }
 }

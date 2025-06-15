@@ -15,7 +15,7 @@ import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 import javax.inject.Inject
 
-class LocalProductFragment : Fragment(), Contract.View {
+class LocalProductFragment : Fragment(), Contract.View, ClickListener {
 
     private lateinit var view: View
     private lateinit var progressBar: ProgressBar
@@ -56,12 +56,14 @@ class LocalProductFragment : Fragment(), Contract.View {
 
     override fun showProducts(response: List<Product>) {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = Adaptor(response, clickListener)
-        //textView.text = "The response length is: ${response.size}"
-
+        recyclerView.adapter = Adaptor(response, this)
     }
 
-    val clickListener = { product: Product, position: Int ->
-        println("recieved")
+    override fun notifyDataUpdate(update: List<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClick(product: Product, position: Int) {
+        presenter.updateData(product, position)
     }
 }

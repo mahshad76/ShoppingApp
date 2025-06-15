@@ -8,6 +8,7 @@ interface Contract {
         fun showLoading()
         fun hideLoading()
         fun showProducts(response: List<Product>)
+        fun notifyDataUpdate(update: List<Product>)
     }
 
     interface Presenter {
@@ -15,5 +16,6 @@ interface Contract {
         fun onAttach(view: View)
         fun onDetach()
         fun onDestroy()
+        fun updateData(product: Product, position: Int)
     }
 }

@@ -13,7 +13,7 @@ import com.mahshad.shoppingapplication.R
 import com.mahshad.shoppingapplication.data.models.Product
 
 class Adaptor(
-    private val productList: List<Product>, private val clickListener: (Product, Int) -> Unit
+    private val productList: List<Product>, private val clickListener: ClickListener
 ) :
     RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +25,7 @@ class Adaptor(
         viewObject.isFavorite.setOnClickListener {
             val position = viewObject.adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                clickListener(productList[position], position)
+                clickListener.onClick(productList[position], position)
             }
         }
         return viewObject
@@ -60,4 +60,8 @@ class ViewHolder(productView: View) : RecyclerView.ViewHolder(productView) {
     val rate = productView.findViewById<TextView>(R.id.product_rate)
     val isFavorite = productView.findViewById<ImageView>(R.id.favorite_icon)
     val productImage = productView.findViewById<ImageView>(R.id.myImageView)
+}
+
+interface ClickListener {
+    fun onClick(product: Product, position: Int)
 }

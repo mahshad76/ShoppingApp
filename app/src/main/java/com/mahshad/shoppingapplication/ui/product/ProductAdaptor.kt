@@ -23,7 +23,22 @@ class ProductAdaptor(
             R.layout.product_layout,
             parent, false
         )
-        return ProductViewHolder(viewLayout)
+        val viewHolder = ProductViewHolder(viewLayout)
+        //TODO boilerplate
+        viewHolder.productCard.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                clickListener.onRowClick(productList[position])
+            }
+        }
+        viewHolder.isFavorite.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                clickListener.onFavoriteClick(productList[position])
+            }
+        }
+
+        return viewHolder
     }
 
     override fun getItemCount() = productList.size
@@ -41,8 +56,6 @@ class ProductAdaptor(
         } else {
             ColorStateList.valueOf(ContextCompat.getColor(holder.itemView.context, R.color.black))
         }
-        holder.productCard.setOnClickListener { clickListener.onRowClick(productList[position]) }
-        holder.isFavorite.setOnClickListener { clickListener.onFavoriteClick(productList[position]) }
         Glide.with(holder.itemView.context)
             .load(productList[position].image)
             .into(holder.productImage)
