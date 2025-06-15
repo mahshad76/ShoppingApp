@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), MainActivityCallbacks {
         (application as MyApplication).appComponent.inject(this)
         binding = MainActivityBinding.inflate(layoutInflater)
         bottomNavigator = binding.bottomNavigationView
-
         setContentView(binding.root)
         replaceFragment(fragment = ProductFragment())
         setupUiListener()

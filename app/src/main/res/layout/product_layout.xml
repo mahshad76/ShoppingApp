@@ -45,6 +45,7 @@
             android:layout_marginLeft="30dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
+            android:contentDescription="Product's image"
             android:focusable="true"
             android:src="@drawable/favourite_alt_svgrepo_com" />
     </LinearLayout>

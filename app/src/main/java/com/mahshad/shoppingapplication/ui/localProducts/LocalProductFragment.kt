@@ -20,6 +20,7 @@ class LocalProductFragment : Fragment(), Contract.View, ClickListener {
     private lateinit var view: View
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ProductAdapter
 
     @Inject
     lateinit var presenter: Contract.Presenter
@@ -37,6 +38,13 @@ class LocalProductFragment : Fragment(), Contract.View, ClickListener {
         view = inflater.inflate(R.layout.fragment_local_product, container, false)
         progressBar = view.findViewById(R.id.loading_progress_bar2)
         recyclerView = view.findViewById(R.id.products_recycler_view3)
+        adapter = ProductAdapter(this)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = adapter
+
+        }
+        recyclerView.layoutManager = LinearLayoutManager(context)
         presenter.getProducts()
         return view
     }
@@ -55,12 +63,11 @@ class LocalProductFragment : Fragment(), Contract.View, ClickListener {
     }
 
     override fun showProducts(response: List<Product>) {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = Adaptor(response, this)
+        adapter.submitList(response)
     }
 
     override fun notifyDataUpdate(update: List<Product>) {
-        TODO("Not yet implemented")
+       adapter.submitList(update)
     }
 
     override fun onClick(product: Product, position: Int) {
