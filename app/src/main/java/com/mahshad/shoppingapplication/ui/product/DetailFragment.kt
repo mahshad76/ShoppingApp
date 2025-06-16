@@ -55,7 +55,7 @@ class DetailFragment : Fragment() {
         val actionBar: ActionBar? = (activity as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setHomeButtonEnabled(true)
-        actionBar?.title = "List of products"
+        actionBar?.title = "Details"
         toolBar.setNavigationOnClickListener {
             parentFragmentManager.popBackStack()
             mainActivityCallback.showBottomNavigationView()
