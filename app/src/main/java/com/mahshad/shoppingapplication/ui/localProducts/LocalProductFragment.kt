@@ -39,12 +39,10 @@ class LocalProductFragment : Fragment(), Contract.View, ClickListener {
         progressBar = view.findViewById(R.id.loading_progress_bar2)
         recyclerView = view.findViewById(R.id.products_recycler_view3)
         adapter = ProductAdapter(this)
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapter
-
+        recyclerView.let {
+            it.layoutManager = LinearLayoutManager(context)
+            it.adapter = adapter
         }
-        recyclerView.layoutManager = LinearLayoutManager(context)
         presenter.getProducts()
         return view
     }
@@ -63,14 +61,10 @@ class LocalProductFragment : Fragment(), Contract.View, ClickListener {
     }
 
     override fun showProducts(response: List<Product>) {
-        adapter.submitList(response)
+        adapter.submitList(response.toMutableList())
     }
 
-    override fun notifyDataUpdate(update: List<Product>) {
-       adapter.submitList(update)
-    }
-
-    override fun onClick(product: Product, position: Int) {
-        presenter.updateData(product, position)
+    override fun clickListener(productId: Int) {
+        presenter.updateData(productId)
     }
 }

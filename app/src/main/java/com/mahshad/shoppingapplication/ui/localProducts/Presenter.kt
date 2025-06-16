@@ -58,10 +58,13 @@ class Presenter @Inject constructor(
         disposableList.clear()
     }
 
-    override fun updateData(product: Product, position: Int) {
-        cachedProducts?.apply {
-            this[position] = product.copy(isFavorite = !product.isFavorite)
+    override fun updateData(productId: Int) {
+        cachedProducts?.let { products ->
+            val index = products.indexOfFirst { it.id == productId }
+            if (index != -1) {
+                products[index] = products[index].copy(isFavorite = !products[index].isFavorite)
+                view?.showProducts(products)
+            }
         }
-        cachedProducts?.let { view?.notifyDataUpdate(it) }
     }
 }
