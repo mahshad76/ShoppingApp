@@ -5,7 +5,10 @@
     android:id="@+id/productCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true">
+    android:layout_margin="10dp"
+    android:clickable="true"
+    app:cardBackgroundColor="#D3D3D3"
+    app:cardCornerRadius="18dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,14 +43,27 @@
                 android:textStyle="bold|italic" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/product_rate"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="rate"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:src="@drawable/star_svgrepo_com" />
+
+            <TextView
+                android:id="@+id/product_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                android:text="rate" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/favorite_icon"
