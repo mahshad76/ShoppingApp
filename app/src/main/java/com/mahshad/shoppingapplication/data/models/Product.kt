@@ -9,4 +9,16 @@ data class Product(
     val rating: Rating?,
     val title: String?,
     var isFavorite: Boolean = false
-)
+) {
+    companion object {
+        val DEFAULT = Product(
+            category = "women",
+            description = "teenagers",
+            id = 1,
+            image = null,
+            price = null,
+            rating = null,
+            title = null
+        )
+    }
+}
