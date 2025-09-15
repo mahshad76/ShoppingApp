@@ -90,6 +90,16 @@ dependencies {
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
 
+    ///unit test
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation (libs.kotlin.test)
+    testImplementation (libs.turbine)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation(libs.rxjava.reactive.streams)
+
     implementation(libs.circleimageview)
 
     implementation(libs.material)

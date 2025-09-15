@@ -17,4 +17,16 @@ data class ProductDTO(
     val ratingDTO: RatingDTO?,
     @SerializedName("title")
     val title: String?
-)
+) {
+    companion object {
+        val DEFAULT = ProductDTO(
+            category = "women",
+            description = "teenagers",
+            id = 1,
+            image = null,
+            price = null,
+            ratingDTO = null,
+            title = null
+        )
+    }
+}
