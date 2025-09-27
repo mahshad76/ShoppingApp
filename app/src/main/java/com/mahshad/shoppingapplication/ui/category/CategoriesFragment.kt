@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.mahshad.shoppingapplication.MyApplication
@@ -71,7 +71,8 @@ class CategoriesFragment :
 
     override fun showCategories(categories: List<String>?) {
         val adapter = categories?.let { CategoriesAdapter(it) }
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        val numberOfColumns = 2
+        recyclerView.layoutManager = GridLayoutManager(context, numberOfColumns)
         recyclerView.adapter = adapter
     }
 

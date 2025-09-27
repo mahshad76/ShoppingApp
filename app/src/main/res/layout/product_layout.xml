@@ -1,80 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/productCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
     android:clickable="true"
-    app:cardBackgroundColor="#D3D3D3"
-    app:cardCornerRadius="18dp">
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:contentPadding="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/myImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="start"
-                android:src="@drawable/ic_launcher_background"
-                app:civ_border_color="#FFFFFFFF"
-                app:civ_border_width="2dp" />
-
-            <TextView
-                android:id="@+id/product_category"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:gravity="center"
-                android:text="category"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
 
             <ImageView
-                android:layout_width="0dp"
+                android:id="@+id/myImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Product image"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <ImageView
+                android:id="@+id/favorite_icon"
+                android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_weight="1"
-                android:src="@drawable/star_svgrepo_com" />
+                android:layout_gravity="top|end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_background_white_translucent"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="4dp"
+                android:src="@drawable/favourite_alt_svgrepo_com"
+                app:tint="@color/red_heart_color" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/product_rate"
-                android:layout_width="0dp"
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="start|center"
-                android:text="rate" />
-        </LinearLayout>
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Winter Padded Jacket for Men" />
 
-        <ImageView
-            android:id="@+id/favorite_icon"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:contentDescription="Product's image"
-            android:focusable="true"
-            android:src="@drawable/favourite_alt_svgrepo_com" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="$129.99" />
+
+                <TextView
+                    android:id="@+id/product_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/tag_background"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    tools:text="men's clothing" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="Product rating"
+                    android:src="@drawable/star_svgrepo_com"
+                    app:tint="@color/amber_star_color" />
+
+                <TextView
+                    android:id="@+id/product_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    tools:text="4.7" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
-

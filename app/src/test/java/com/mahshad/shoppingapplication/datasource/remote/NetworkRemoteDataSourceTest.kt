@@ -1,6 +1,7 @@
 package com.mahshad.shoppingapplication.datasource.remote
 
 import com.mahshad.shoppingapplication.data.datasource.remote.NetworkRemoteDataSource
+import com.mahshad.shoppingapplication.data.datasource.remote.RemoteDataSource
 import com.mahshad.shoppingapplication.data.models.response.ProductDTO
 import com.mahshad.shoppingapplication.data.network.ApiService
 import io.reactivex.Single
@@ -16,7 +17,7 @@ import retrofit2.Response
 class NetworkRemoteDataSourceTest {
     @Mock
     private lateinit var fakeApiService: ApiService
-    private lateinit var networkRemoteDataSource: NetworkRemoteDataSource
+    private lateinit var networkRemoteDataSource: RemoteDataSource
 
     @Before
     fun setup() {
@@ -26,15 +27,18 @@ class NetworkRemoteDataSourceTest {
 
     @Test
     fun `getProducts - when repository returns data - product list is returned`() {
-        val testObserver = TestObserver<Response<List<ProductDTO>>>()
+        //Given
+//        val testObserver = TestObserver<Response<List<ProductDTO>>>()
         val expectedResponse: Response<List<ProductDTO>> = Response
             .success(listOf(ProductDTO.DEFAULT))
         whenever(fakeApiService.getProducts())
             .thenReturn(
                 Single.just(expectedResponse)
             )
-        networkRemoteDataSource.getProducts().subscribe(testObserver)
-        testObserver.assertValue(expectedResponse)
+       //When
+        val result = networkRemoteDataSource.getProducts().test()
+        //Then
+        result.assertValue(expectedResponse)
     }
 
     @Test

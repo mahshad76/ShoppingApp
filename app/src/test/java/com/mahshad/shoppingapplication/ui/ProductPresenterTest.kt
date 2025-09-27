@@ -1,8 +1,8 @@
 package com.mahshad.shoppingapplication.ui
 
 import com.mahshad.shoppingapplication.data.models.Product
-import com.mahshad.shoppingapplication.data.repository.product.DefaultProductRepository
-import com.mahshad.shoppingapplication.ui.product.ProductFragment
+import com.mahshad.shoppingapplication.data.repository.product.ProductRepository
+import com.mahshad.shoppingapplication.ui.product.ProductContract
 import com.mahshad.shoppingapplication.ui.product.ProductPresenter
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
@@ -18,10 +18,10 @@ import org.mockito.kotlin.whenever
 class ProductPresenterTest {
 
     @Mock
-    private lateinit var fakeProductRepository: DefaultProductRepository
+    private lateinit var productRepository: ProductRepository
 
     @Mock
-    private lateinit var fakeProductFragment: ProductFragment
+    private lateinit var view: ProductContract.View
 
     @Mock
     private lateinit var compositeDisposable: CompositeDisposable
@@ -34,19 +34,18 @@ class ProductPresenterTest {
         MockitoAnnotations.openMocks(this)
         testScheduler = TestScheduler()
         productPresenter = ProductPresenter(
-            fakeProductRepository,
+            productRepository,
             compositeDisposable,
             ioScheduler = testScheduler,
             mainScheduler = testScheduler
         )
-        productPresenter.attachView(fakeProductFragment)
+        productPresenter.attachView(view)
     }
 
     @Test
     fun `getModifiedProducts - when the repository returns data - callsCorrectViewMethods`() {
         val mockedProducts = listOf(Product.DEFAULT)
-
-        whenever(fakeProductRepository.getModifiedProducts())
+        whenever(productRepository.getModifiedProducts())
             .thenReturn(Flowable.just(mockedProducts))
 
         // When
@@ -57,18 +56,18 @@ class ProductPresenterTest {
         // are not executed, so hideLoading() is never called.
         testScheduler.triggerActions()
 
-        val inOrder = inOrder(fakeProductFragment)
+        val inOrder = inOrder(productRepository)
 
         // Verify that showLoading() is called first
-        inOrder.verify(fakeProductFragment).showLoading()
+        inOrder.verify(view).showLoading()
 
         // Verify that hideLoading() is called after the stream completes
-        inOrder.verify(fakeProductFragment).hideLoading()
+        inOrder.verify(view).hideLoading()
 
         // Verify that showModifiedProducts() is called with the correct data
-        inOrder.verify(fakeProductFragment).showModifiedProducts(mockedProducts)
+        inOrder.verify(view).showModifiedProducts(mockedProducts)
 
         // Ensure no other methods were called on the view
-        verifyNoMoreInteractions(fakeProductFragment)
+        verifyNoMoreInteractions(view)
     }
 }
