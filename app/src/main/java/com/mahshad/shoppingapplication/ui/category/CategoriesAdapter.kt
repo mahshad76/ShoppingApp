@@ -3,6 +3,7 @@ package com.mahshad.shoppingapplication.ui.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -20,9 +21,16 @@ class CategoriesAdapter(private val categoriesList: List<String>) : Adapter<View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = categoriesList[position]
+        when (categoriesList[position]) {
+            "electronics" -> holder.imageView.setImageResource(R.drawable.laptop_electronic_svgrepo_com)
+            "jewelery" -> holder.imageView.setImageResource(R.drawable.jewelry_store_svgrepo_com)
+            "men's clothing" -> holder.imageView.setImageResource(R.drawable.men_clothes_svgrepo_com)
+            "women's clothing" -> holder.imageView.setImageResource(R.drawable.dress_4_svgrepo_com)
+        }
     }
 }
 
 class ViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textView: TextView = itemView.findViewById(R.id.categoryTextView)
+    val imageView: ImageView = itemView.findViewById(R.id.categoryIcon)
 }
