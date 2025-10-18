@@ -28,3 +28,27 @@ The Model is responsible for managing the application's data sources.
 - Responsibility: Handles all data operations, including remote API calls and local database transactions.
 - Key Principle: The Model is completely unaware of the View and the Presenter, ensuring the data logic can be easily swapped or updated without affecting the UI.
 
+# 🛠️ Technologies & Libraries
+1.  **Core Development Stack & UI**
+* Kotlin: The primary, modern programming language, chosen for its safety features, conciseness, and seamless integration with the Android framework.
+* XML Layouts & ConstraintLayout: Utilized for declaring flexible and responsive user interface views. ConstraintLayout is specifically used to create flat and efficient view hierarchies.
+
+2. **Networking & API Communication**
+
+* Retrofit, OkHttp, & Gson: This combination forms the application's robust network layer. Retrofit provides a type-safe HTTP client for API interaction; OkHttp efficiently handles the underlying connection protocols; and Gson automatically serializes/deserializes product data. The Logging Interceptor is included for network debugging.
+
+3. **Reactive Programming**
+
+* RxJava 2 & RxAndroid: A comprehensive library suite for managing complex asynchronous operations and data streams. Used extensively for handling background tasks like network calls and database access, integrating seamlessly via the RxJava Adapter and utilizing RxJava Extensions for advanced stream manipulation.
+
+3. **Dependency Injection**
+
+* Dagger 2: A powerful, compile-time dependency injection framework used to manage object dependencies (such as Presenters, Repositories, and Services), which is critical for supporting the MVP architecture and facilitating unit testing.
+
+4. **Data Persistence**
+
+* Room: The official Android Persistence Library. It provides an abstraction layer over SQLite, used in the Model layer to persistently save the user's "liked" products. It fully supports RxJava 2 to enable reactive database monitoring.
+
+5. **Image Handling**
+
+* Glide: A dedicated, high-performance image loading library used for fetching, caching, and efficiently displaying product images without causing memory leaks or UI slowdowns.
